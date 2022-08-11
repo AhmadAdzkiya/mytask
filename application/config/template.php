@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /*
 |--------------------------------------------------------------------------
 | Template configuration
@@ -11,5 +11,5 @@
 */
 
 $config['parser']    = FALSE;
-$config['template']  = 'template/front/bwi';
+$config['template']  = 'template/front/';
 $config['cache_ttl'] = 0;

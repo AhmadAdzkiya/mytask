@@ -15,7 +15,7 @@ class Dash extends MY_Controller
 
 		date_default_timezone_set("Asia/Jakarta");
 
-		//$this->load->model('admin_corona_model');
+		//$this->load->model('admin__model');
 
 		if (!$this->ion_auth->logged_in()) {
 			redirect('users/auth', 'refresh');
@@ -23,7 +23,7 @@ class Dash extends MY_Controller
 		$this->ion_auth->get_user_group();
 	}
 
-	public function index()//blank
+	public function index() //blank
 	{
 		// $user_group = $this->ion_auth->get_user_group();
 
@@ -39,7 +39,7 @@ class Dash extends MY_Controller
 		// 	// $data['raperda'] =$raperda;
 
 		// 	$this->template->template_view($data);
-		
+
 		// }else{
 
 		// 	$data['user'] = $this->ion_auth->user()->row();
@@ -48,10 +48,7 @@ class Dash extends MY_Controller
 		// }
 
 		$data['user'] = $this->ion_auth->user()->row();
-			$data['page'] = "dash/dash/v_dash_index_admin";
-			$this->template->template_view($data);
-
-		
+		$data['page'] = "dash/dash/v_dash_index_admin";
+		$this->template->template_view($data);
 	}
-
 }

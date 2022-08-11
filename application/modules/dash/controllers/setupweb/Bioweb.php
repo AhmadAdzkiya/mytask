@@ -18,7 +18,7 @@ class Bioweb extends MY_Controller
 		$this->load->model('dash/setupweb/page_model');
 		date_default_timezone_set("Asia/Jakarta");
 
-		//$this->load->model('admin_corona_model');
+		//$this->load->model('admin__model');
 
 		if (!$this->ion_auth->logged_in()) {
 			redirect('users/auth', 'refresh');
@@ -26,97 +26,103 @@ class Bioweb extends MY_Controller
 		$this->ion_auth->get_user_group();
 	}
 
-	public function index()//blank
+	public function index() //blank
 	{
 		echo "zxckvfzxjhc";
 	}
 
-	public function biodata(){
-		$data['page'] = $this->nmPage."v_biodata_index";
+	public function biodata()
+	{
+		$data['page'] = $this->nmPage . "v_biodata_index";
 		$this->template->template_view($data);
 	}
 
-	public function daftar(){
-		$data['page'] = $this->nmPage."v_page_index";
+	public function daftar()
+	{
+		$data['page'] = $this->nmPage . "v_page_index";
 		$this->template->template_view($data);
 	}
 
-	public function tambah(){
-		$data['page'] = $this->nmPage."v_page_tambah";
+	public function tambah()
+	{
+		$data['page'] = $this->nmPage . "v_page_tambah";
 		$data["nmPage"] = $this->nmPage;
 		$this->template->template_view($data);
 	}
 
-	public function frmTambah($idParent=null){
+	public function frmTambah($idParent = null)
+	{
 
 		$data = [
-			"nmPage"=>$this->nmPage,
-			"mode"=>"new"
+			"nmPage" => $this->nmPage,
+			"mode" => "new"
 		];
 
-		if($idParent){
+		if ($idParent) {
 			$data['parent_id_for_sub'] = $idParent;
 		}
 
-		$this->load->view($this->nmPage."v_page_tambah_content",$data);
+		$this->load->view($this->nmPage . "v_page_tambah_content", $data);
 	}
 
-	public function profil($id=null,$slug=null){
+	public function profil($id = null, $slug = null)
+	{
 		$backfall = "<h3>Tidak menemukan halaman yang ingin dikelola</h3> 
-		<a href='".base_url()."dash/setupweb/page/daftar'>Lihat Daftar halaman</a>";
+		<a href='" . base_url() . "dash/setupweb/page/daftar'>Lihat Daftar halaman</a>";
 
-		if($id==null){
+		if ($id == null) {
 			echo $backfall;
 			die();
-		}else{
-			$page = $this->page_model->findBy(["a.id" => $id] );
+		} else {
+			$page = $this->page_model->findBy(["a.id" => $id]);
 
-			if(count($page)>0){
+			if (count($page) > 0) {
 
-				$data['page'] = $this->nmPage."v_page_edit";
+				$data['page'] = $this->nmPage . "v_page_edit";
 				$data['data'] = $page[0];
 				$data['nmPage'] = $this->nmPage;
 
 				$this->template->template_view($data);
-			}else{
+			} else {
 				echo $backfall;
 				die();
 			}
 		}
-		
 	}
 
-	public function save_halaman(){
+	public function save_halaman()
+	{
 		$postData = json_decode(file_get_contents("php://input"));
 		$postData->slug = slugify($postData->nama);
 
 		$date = date("Y-m-d H:i:s");
 		$postData->modify = $date;
 		$postData->created = $date;
-		$id= $postData->id;
+		$id = $postData->id;
 
 		$res = $this->page_model->save($postData);
-		
-		if($res){
+
+		if ($res) {
 			echo json_encode([
 				"success" => true,
 				"status" => true,
 				"message" => "Berhasil simpan",
 				"data" => $postData
-				]);
-		}else{
+			]);
+		} else {
 			echo json_encode([
 				"success" => false,
 				"status" => false,
 				"message" => "Gagal simpan, Silakan cek lagi data Anda",
 				"data" => $postData
-				]);
+			]);
 		}
 
 		header('Content-Type: application/json');
 	}
 
-	public function save_halaman_form(){
+	public function save_halaman_form()
+	{
 		$data = array(
 			'id' => '',
 			'nama' => post('nama'),
@@ -146,7 +152,7 @@ class Bioweb extends MY_Controller
 			redirect('dash/setupweb/page/daftar', 'refresh');
 		}
 	}
-	
+
 	public function save_sub_halaman()
 	{
 
@@ -178,7 +184,6 @@ class Bioweb extends MY_Controller
 			$this->session->set_flashdata('error', $msg);
 			redirect('dash/setupweb/page/daftar', 'refresh');
 		}
-		
 	}
 
 
@@ -186,26 +191,26 @@ class Bioweb extends MY_Controller
 	{
 
 		$postData = json_decode(file_get_contents("php://input"));
-		if(isset($postData->nama)){
+		if (isset($postData->nama)) {
 			$postData->slug = slugify($postData->nama);
 		}
-		
+
 
 		$date = date("Y-m-d H:i:s");
 		$postData->modify = $date;
-		$id= $postData->id;
+		$id = $postData->id;
 
-		$res = $this->page_model->update($postData,$id);
-		
-		if($res){
+		$res = $this->page_model->update($postData, $id);
+
+		if ($res) {
 			unset($postData->isi);
 			echo json_encode([
 				"success" => true,
 				"status" => true,
 				"message" => "Berhasil simpan perubahan",
 				"data" => $postData
-				]);
-		}else{
+			]);
+		} else {
 			unset($postData->isi);
 
 			echo json_encode([
@@ -213,7 +218,7 @@ class Bioweb extends MY_Controller
 				"status" => false,
 				"message" => "Gagal simpan perubahan, Silakan cek lagi data Anda",
 				"data" => $postData
-				]);
+			]);
 		}
 
 		header('Content-Type: application/json');
@@ -245,11 +250,11 @@ class Bioweb extends MY_Controller
 
 	public function update_sub_permission()
 	{
-		if(post('id') == post('head_perm')){
+		if (post('id') == post('head_perm')) {
 			$msg = "Gagal update menu dan sub menu tidak boleh sama ";
 			$this->session->set_flashdata('error', $msg);
 			redirect('users/Permissions', 'refresh');
-		}else{
+		} else {
 			$data = array(
 				'perm_name' => post('perm'),
 				'url' => post('url'),
@@ -257,9 +262,9 @@ class Bioweb extends MY_Controller
 				'parent_id' => post('head_perm'),
 				'urutan' => post('urutan'),
 			);
-	
+
 			$result = $this->common_model->UpdateDB($this->tables['permissions'], array('perm_id' => post('id')), $data);
-	
+
 			if ($result) {
 				$msg = "Sub Permission Updated Successfully";
 				$this->session->set_flashdata('success', $msg);
@@ -270,50 +275,46 @@ class Bioweb extends MY_Controller
 				redirect('users/Permissions', 'refresh');
 			}
 		}
-		
 	}
 
 	public function delete_halaman($id)
 	{
-		if($this->ion_auth->get_users_groups()->row()->id == 1){
-			
+		if ($this->ion_auth->get_users_groups()->row()->id == 1) {
+
 
 			$this->db->trans_start();
 
 			$page = $this->page_model->findBy(["a.id" => $id])[0];
 			//jika dia halaman root maka hapus juga sub halaman nya
-			if($page->parent_id= 0){
+			if ($page->parent_id = 0) {
 				$this->page_model->delete($id);
-				$this->page_model->deleteBy(["parent_id"=>$id]);
+				$this->page_model->deleteBy(["parent_id" => $id]);
 			}
 			//jika dia sub halaman maka hapus sub haalaman saja
-			else{
+			else {
 				$this->page_model->delete($id);
 			}
-			
+
 			$this->db->trans_complete();
 
-			if ($this->db->trans_status() === FALSE)
-			{
+			if ($this->db->trans_status() === FALSE) {
 
 				$msg = "Upps terjadi masalah dengan pengahpusan data.. ";
 				$this->session->set_flashdata('error', $msg);
 				redirect('/dash/setupweb/page/daftar', 'refresh');
-				
-			}else{
-				
+			} else {
+
 				$msg = "Halaman berhasil dihapus";
 				$this->session->set_flashdata('success', $msg);
 				redirect('/dash/setupweb/page/daftar', 'refresh');
 			}
-		}else{
+		} else {
 			$msg = "Anda tidak diperbolehkan menghapus data ini";
 			$this->session->set_flashdata('error', $msg);
 			redirect('/dash/setupweb/page/daftar', 'refresh');
 		}
-		
 	}
-	
+
 	public function get_perm()
 	{
 		$id = post('id');
@@ -349,9 +350,4 @@ class Bioweb extends MY_Controller
 			echo json_encode($result);
 		}
 	}
-	
-
-	
-
-
 }

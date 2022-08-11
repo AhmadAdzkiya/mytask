@@ -15,13 +15,13 @@ function smtp_mail($to, $subject, $message, $from_name, $from, $cc, $bcc, $debug
   /* -------------------------- Konfigurasi Dasar SMTP ---------------------------------- */
   
   $mail->SMTPAuth 	= true;                        				
-  $mail->Host 		  = 'mail.banyuwangikab.go.id';  // Masukkan Server SMTP
+  $mail->Host 		  = 'mail.kab.go.id';  // Masukkan Server SMTP
   $mail->Port 		  = 25;                                      // Masukkan Port SMTP
   $mail->SMTPSecure = 'tls';                                // Masukkan Pilihan Enkripsi ( `tls` atau `ssl` )
-  $mail->Username 	= 'admin@banyuwangikab.go.id';         // Masukkan Email yang digunakan selama proses pengiriman email via SMTP
-  $mail->Password 	= 'banyuwangiku2020!';        						          // Masukkan Password dari Email tsb
-  $default_email_from       = 'admin@banyuwangikab.go.id';        // Masukkan default from pada email
-  $default_email_from_name  = 'Admin Banyuwangi';           // Masukkan default nama dari from pada email
+  $mail->Username 	= 'admin@kab.go.id';         // Masukkan Email yang digunakan selama proses pengiriman email via SMTP
+  $mail->Password 	= 'ku2020!';        						          // Masukkan Password dari Email tsb
+  $default_email_from       = 'admin@kab.go.id';        // Masukkan default from pada email
+  $default_email_from_name  = 'Admin ';           // Masukkan default nama dari from pada email
   
   /* -------------------------- Konfigurasi Dasar SMTP ---------------------------------- */
   
@@ -72,5 +72,3 @@ function smtp_mail($to, $subject, $message, $from_name, $from, $cc, $bcc, $debug
   else
     return 0;
 }
-
-?>

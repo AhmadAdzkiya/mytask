@@ -13236,7 +13236,7 @@
         //   this.dCtx.gridPad.left -
         //   this.dCtx.gridPad.right
 
-        var lbWidth = xaxisLabelCoords.width;
+        var ldth = xaxisLabelCoords.width;
         gl.skipLastTimelinelabel = false;
         gl.skipFirstTimelinelabel = false;
         var isBarOpposite = w.config.yaxis[0].opposite && w.globals.isBarHorizontal;
@@ -13250,10 +13250,10 @@
             // for timeline labels, we take the last label and check if it exceeds gridWidth
             var firstimescaleLabel = _this.dCtx.timescaleLabels[0];
             var lastTimescaleLabel = _this.dCtx.timescaleLabels[_this.dCtx.timescaleLabels.length - 1];
-            var lastLabelPosition = lastTimescaleLabel.position + lbWidth / 1.75 - // replace + with - ;
+            var lastLabelPosition = lastTimescaleLabel.position + ldth / 1.75 - // replace + with - ;
             // allow the last label to intersect with the right y axis
             _this.dCtx.yAxisWidthRight;
-            var firstLabelPosition = firstimescaleLabel.position - lbWidth / 1.75 + // remove conditional since the first label is always at the very left
+            var firstLabelPosition = firstimescaleLabel.position - ldth / 1.75 + // remove conditional since the first label is always at the very left
             // allow the first label to intersect with the left y axes
             _this.dCtx.yAxisWidthLeft;
 
@@ -13266,12 +13266,12 @@
             }
           } else if (xtype === 'datetime') {
             // If user has enabled DateTime, but uses own's formatter
-            if (_this.dCtx.gridPad.right < lbWidth && !gl.rotateXLabels) {
+            if (_this.dCtx.gridPad.right < ldth && !gl.rotateXLabels) {
               gl.skipLastTimelinelabel = true;
             }
           } else if (xtype !== 'datetime') {
-            if (_this.dCtx.gridPad.right < lbWidth / 2 - _this.dCtx.yAxisWidthRight && !gl.rotateXLabels && (w.config.xaxis.tickPlacement !== 'between' || w.globals.isBarHorizontal)) {
-              _this.dCtx.xPadRight = lbWidth / 2 + 1;
+            if (_this.dCtx.gridPad.right < ldth / 2 - _this.dCtx.yAxisWidthRight && !gl.rotateXLabels && (w.config.xaxis.tickPlacement !== 'between' || w.globals.isBarHorizontal)) {
+              _this.dCtx.xPadRight = ldth / 2 + 1;
             }
           }
         };
@@ -13280,8 +13280,8 @@
           if (isCollapsed(i)) return;
 
           if (xtype !== 'datetime') {
-            if (_this.dCtx.gridPad.left < lbWidth / 2 - _this.dCtx.yAxisWidthLeft && !gl.rotateXLabels && !cnf.xaxis.labels.trim) {
-              _this.dCtx.xPadLeft = lbWidth / 2 + 1;
+            if (_this.dCtx.gridPad.left < ldth / 2 - _this.dCtx.yAxisWidthLeft && !gl.rotateXLabels && !cnf.xaxis.labels.trim) {
+              _this.dCtx.xPadLeft = ldth / 2 + 1;
             }
           }
 
@@ -13290,11 +13290,11 @@
 
         cnf.yaxis.forEach(function (yaxe, i) {
           if (isBarOpposite) {
-            if (_this.dCtx.gridPad.left < lbWidth) {
-              _this.dCtx.xPadLeft = lbWidth / 2 + 1;
+            if (_this.dCtx.gridPad.left < ldth) {
+              _this.dCtx.xPadLeft = ldth / 2 + 1;
             }
 
-            _this.dCtx.xPadRight = lbWidth / 2 + 1;
+            _this.dCtx.xPadRight = ldth / 2 + 1;
           } else {
             padYAxe(yaxe, i);
           }

@@ -670,10 +670,10 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::createPageBlob
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::_addCreateBlobOptionalHeaders
      */
-    public function testCreatePageBlobWithExtraOptions()
+    public function testCreatePageBlothExtraOptions()
     {
         // Setup
-        $name = 'createpageblobwithextraoptions' . $this->createSuffix();
+        $name = 'createpageblothextraoptions' . $this->createSuffix();
         $this->createContainer($name);
         $metadata = array('Name1' => 'Value1', 'Name2' => 'Value2');
         $contentType = Resources::BINARY_FILE_TYPE;
@@ -693,10 +693,10 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::createBlockBlob
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::_addCreateBlobOptionalHeaders
      */
-    public function testCreateBlockBlobWithBinary()
+    public function testCreateBlockBlothBinary()
     {
         // Setup
-        $name = 'createblockblobwithbinary' . $this->createSuffix();
+        $name = 'createblockblothbinary' . $this->createSuffix();
         $this->createContainer($name);
         
         // Test
@@ -716,10 +716,10 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::createBlockBlob
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::_addCreateBlobOptionalHeaders
      */
-    public function testCreateBlockBlobWithPlainText()
+    public function testCreateBlockBlothPlainText()
     {
         // Setup
-        $name = 'createblockblobwithplaintext' . $this->createSuffix();
+        $name = 'createblockblothplaintext' . $this->createSuffix();
         $contentType = 'text/plain; charset=UTF-8';
         $this->createContainer($name);
         $options = new CreateBlobOptions();
@@ -740,10 +740,10 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::createBlockBlob
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::_addCreateBlobOptionalHeaders
      */
-    public function testCreateBlockBlobWithStream()
+    public function testCreateBlockBlothStream()
     {
         // Setup
-        $name = 'createblockblobwithstream' . $this->createSuffix();
+        $name = 'createblockblothstream' . $this->createSuffix();
         $contentType = 'text/plain; charset=UTF-8';
         $this->createContainer($name);
         $options = new CreateBlobOptions();
@@ -905,7 +905,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::_addOptionalRangeHeader
      * @covers MicrosoftAzure\Storage\Blob\Models\GetBlobResult::create
      */
-    public function testGetBlobWithRange()
+    public function testGetBlothRange()
     {
         // Setup
         $name = '$root';
@@ -937,10 +937,10 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::_addOptionalRangeHeader
      * @covers MicrosoftAzure\Storage\Blob\Models\GetBlobResult::create
      */
-    public function testGetBlobWithEndRange()
+    public function testGetBlothEndRange()
     {
         // Setup
-        $name = 'getblobwithendrange' . $this->createSuffix();
+        $name = 'getblothendrange' . $this->createSuffix();
         $blob = 'myblob';
         $this->createContainer($name);
         $length = 512;
@@ -971,7 +971,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
     public function testGetBlobGarbage()
     {
         // Setup
-        $name = 'getblobwithgarbage' . $this->createSuffix();
+        $name = 'getblothgarbage' . $this->createSuffix();
         $blob = 'myblob';
         $metadata = array('m1' => 'v1', 'm2' => 'v2');
         $contentType = 'text/plain; charset=UTF-8';

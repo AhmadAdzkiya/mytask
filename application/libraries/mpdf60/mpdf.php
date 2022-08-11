@@ -31018,7 +31018,7 @@ function WriteBarcode($code, $showtext=1, $x='', $y='', $size=1, $border=0, $pad
 			$fbw = $bcw + $llm + $rlm;	// Full barcode width incl. light margins
 			$ow = $fbw + $paddingL + $paddingR;	// Full overall width incl. user-defined padding
 
-			$fbwi = $fbw - 2;	// Full barcode width incl. light margins - 2mm - for isbn string
+			$f = $fbw - 2;	// Full barcode width incl. light margins - 2mm - for isbn string
 
 			// cf. http://www.gs1uk.org/downloads/bar_code/Bar coding getting it right.pdf
 			$num_height = 3 * $size;					// Height of numerals
@@ -31086,21 +31086,21 @@ function WriteBarcode($code, $showtext=1, $x='', $y='', $size=1, $border=0, $pad
 			   
 			   if ($bgcol) { $this->SetFColor($bgcol); }
 			   else { $this->SetFColor($this->ConvertColor(255)); }
-			   $this->x = $x + $paddingL + 1;	// 1mm left margin (cf. $fbwi above)
-			   // max width is $fbwi 
+			   $this->x = $x + $paddingL + 1;	// 1mm left margin (cf. $f above)
+			   // max width is $f 
 			   $loop = 0;
 			   while ( $loop == 0 ) {
 				$this->SetFontSize($codestr_fontsize*1.4*_MPDFK, false);	// don't write
 				$sz = $this->GetStringWidth( $codestr );
-				if ($sz > $fbwi)
+				if ($sz > $f)
 					$codestr_fontsize -= 0.1;
 				else
 					$loop ++;
 			   }
 			   $this->SetFont('','',$codestr_fontsize*1.4*_MPDFK, true, true);	// * 1.4 because font height is only 7/10 of given mm
  			   // WORD SPACING
-			   if ($fbwi > $sz) {
-				$xtra =  $fbwi - $sz;
+			   if ($f > $sz) {
+				$xtra =  $f - $sz;
 				$charspacing = $xtra / (strlen($codestr)-1);
 				if ($charspacing) { $this->_out(sprintf('BT %.3F Tc ET',$charspacing*_MPDFK)); }
 			   }

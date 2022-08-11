@@ -20,10 +20,10 @@ class Users extends MY_Controller
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
         $this->load->module('template');
-        $this->load->module('bwidevtemplate');
+        $this->load->module('devtemplate');
 
         // initialize db tables data
-		$this->tables = $this->config->item('tables', 'ion_auth');
+        $this->tables = $this->config->item('tables', 'ion_auth');
 
         $this->load->helper(array('html', 'language', 'form', 'country_helper'));
         $this->load->model(array('Users_modal', 'common_model'));
@@ -76,17 +76,17 @@ class Users extends MY_Controller
         $identity_column = $this->config->item('identity', 'ion_auth');
 
         $data['top1'] = "dprd/v_top_prioritas";
-		$data['page_title'] = "";
-		$data['page_wallpaper'] = ""; 
-		$data['page_sub_title'] = "";
-		$data['page'] = "dprd/v_kontainer";
-		$data['pageContent'] = "users/users/create_user_member_json";
-		$data['pageLink'] = 'propemperda';
-		$data['pageMenu'] = [];
-		$data['data']['groups'] = $this->ion_auth->group(2)->result();
-		$data['data']['identity_column'] = $identity_column;
+        $data['page_title'] = "";
+        $data['page_wallpaper'] = "";
+        $data['page_sub_title'] = "";
+        $data['page'] = "dprd/v_kontainer";
+        $data['pageContent'] = "users/users/create_user_member_json";
+        $data['pageLink'] = 'propemperda';
+        $data['pageMenu'] = [];
+        $data['data']['groups'] = $this->ion_auth->group(2)->result();
+        $data['data']['identity_column'] = $identity_column;
 
-		$this->bwidevtemplate->template_front($data);
+        $this->devtemplate->template_front($data);
     }
 
     // create a new user
@@ -94,7 +94,7 @@ class Users extends MY_Controller
     {
         $this->form_validation->set_rules('first_name', 'First name', 'trim|required');
         $this->form_validation->set_rules('last_name', 'Last name', 'trim|required');
-        $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique['.$this->tables['users'].'.username]');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[' . $this->tables['users'] . '.username]');
         $this->form_validation->set_rules('email', 'Email', 'trim|valid_email|required');
         $this->form_validation->set_rules('company', 'Company', 'trim|required');
         $this->form_validation->set_rules('phone', 'Phone No', 'trim|required');
@@ -142,7 +142,7 @@ class Users extends MY_Controller
     {
         $this->form_validation->set_rules('first_name', 'First name', 'trim|required');
         $this->form_validation->set_rules('last_name', 'Last name', 'trim|required');
-        $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique['.$this->tables['users'].'.username]');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[' . $this->tables['users'] . '.username]');
         $this->form_validation->set_rules('email', 'Email', 'trim|valid_email|required');
         $this->form_validation->set_rules('company', 'Company', 'trim|required');
         $this->form_validation->set_rules('phone', 'Phone No', 'trim|required');
@@ -158,8 +158,8 @@ class Users extends MY_Controller
                 "status" => false,
                 "message" => $msg,
                 "data" => $msg
-                ]);
-                exit();
+            ]);
+            exit();
 
             // redirect('users/Users/create_user');
         } else {
@@ -198,7 +198,7 @@ class Users extends MY_Controller
                     "status" => true,
                     "message" => $this->ion_auth->messages(),
                     "data" => $additional_data
-                    ]);
+                ]);
 
                 // $this->session->set_flashdata('success', $this->ion_auth->messages());
                 // redirect('users/Users', 'refresh');
@@ -208,7 +208,7 @@ class Users extends MY_Controller
                     "status" => false,
                     "message" => $this->ion_auth->messages(),
                     "data" => $additional_data
-                    ]);
+                ]);
 
                 // $this->session->set_flashdata('error', $this->ion_auth->errors());
                 // redirect('users/Users/create_user', 'refresh');
@@ -284,8 +284,8 @@ class Users extends MY_Controller
                     'phone'      => $this->input->post('phone'),
                 );
 
-                
-		
+
+
 
                 // update the password if it was posted
                 if ($this->input->post('password')) {
@@ -296,20 +296,18 @@ class Users extends MY_Controller
                     $paas_confirmation = $this->input->post('password_confirm');
 
                     $msg = "";
-                    if(strlen($this->input->post('password')) < $min_length ){
-                        $msg = "Password min length is ". $min_length;
+                    if (strlen($this->input->post('password')) < $min_length) {
+                        $msg = "Password min length is " . $min_length;
                     }
 
-                    if($password !== $paas_confirmation){
+                    if ($password !== $paas_confirmation) {
                         $msg = "Password did not macth";
                     }
 
-                    if($msg != ""){
+                    if ($msg != "") {
                         $this->session->set_flashdata('error', $msg);
                         redirect('users/edit_user/' . $id, 'refresh');
                     }
-
-		
                 }
 
                 // Only allow updating groups if user is admin
@@ -347,7 +345,7 @@ class Users extends MY_Controller
                     }
                 }
             } else {
-                
+
                 $msg = "Password do not match";
                 $this->session->set_flashdata('error', $msg);
                 redirect('users/edit_user/' . $id, 'refresh');
@@ -698,7 +696,7 @@ class Users extends MY_Controller
             $this->template->template_view($data);
         }
     }
-    
+
     public function update_avatar($value = '')
     {
         $config['upload_path']          = './uploads/';
@@ -734,22 +732,22 @@ class Users extends MY_Controller
         }
     }
 
-    public function restoreDefaultPassword(){
+    public function restoreDefaultPassword()
+    {
         $user = json_decode(file_get_contents("php://input"));
         $newPAss = "123456789";
-        if ($this->ion_auth->update($user->id, ["password"=>$newPAss]) ){
+        if ($this->ion_auth->update($user->id, ["password" => $newPAss])) {
             echo json_encode([
                 "status" => true,
-                "message" => "Password telah dibuah ke default = ".$newPAss
+                "message" => "Password telah dibuah ke default = " . $newPAss
             ]);
-        }else{
+        } else {
             echo json_encode([
                 "status" => false,
                 "message" => "Gagal reset default password, silakan coba lagi "
             ]);
         }
     }
-    
 }
 
 /* End of file Users.php */

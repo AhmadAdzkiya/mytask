@@ -31,10 +31,10 @@ class Main extends MY_Controller
 		// die();
 	}
 	
-    public function bwi() 
+    public function () 
 	{
 		
-		$this->template->set_template('template/front/bwi');
+		$this->template->set_template('template/front/');
 				
 		$this->template->title = 'Ok';
 		$this->data['menu'] = 'home';

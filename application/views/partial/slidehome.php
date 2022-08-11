@@ -4,8 +4,10 @@
     <div class="swiper-wrapper">
 
       <!-- SLIDE 1 -->
-      <div class="swiper-slide" style="background-image: url('<?php echo base_url()?>public/assets/slide/bg1.jpeg');">
-        <div class="overlay dark-5"><!-- dark overlay [1 to 9 opacity] --></div>
+      <div class="swiper-slide" style="background-image: url('<?php echo base_url() ?>public/assets/slide/bg1.jpeg');">
+        <div class="overlay dark-5">
+          <!-- dark overlay [1 to 9 opacity] -->
+        </div>
 
         <div class="display-table">
           <div class="display-table-cell vertical-align-middle">
@@ -15,8 +17,8 @@
                 <div class="text-center col-md-8 col-xs-12 col-md-offset-2">
 
                   <h1 class="bold font-raleway wow fadeInUp" data-wow-delay="0.4s">CEGAH COVID-19</h1>
-                  <p class="lead font-lato weight-300 hidden-xs wow fadeInUp" data-wow-delay="0.6s">Banyuwangi gotong royong cegah covid-19, tingkatkan imunitas tubuh dan jaga kebersihan.</p>
-                  <span class="wow fadeIn" data-wow-delay="1.5s" href="#"><img src="<?php echo base_url()?>public/assets/cc.png"/></span>
+                  <p class="lead font-lato weight-300 hidden-xs wow fadeInUp" data-wow-delay="0.6s"> gotong royong cegah covid-19, tingkatkan imunitas tubuh dan jaga kebersihan.</p>
+                  <span class="wow fadeIn" data-wow-delay="1.5s" href="#"><img src="<?php echo base_url() ?>public/assets/cc.png" /></span>
 
                 </div>
               </div>

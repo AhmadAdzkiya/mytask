@@ -38,10 +38,10 @@ $config['database_group_name'] = '';
 | -------------------------------------------------------------------------
 | Database table names.
 */
-$config['tables']['bwi_users']           = 'bwi_users';
-$config['tables']['bwi_groups']          = 'bwi_groups';
-$config['tables']['bwi_users_groups']    = 'bwi_users_groups';
-$config['tables']['bwi_login_attempts']  = 'bwi_login_attempts';
+$config['tables']['_users']           = '_users';
+$config['tables']['_groups']          = '_groups';
+$config['tables']['_users_groups']    = '_users_groups';
+$config['tables']['_login_attempts']  = '_login_attempts';
 
 /*
  | Users table column and Group table column you want to join WITH.

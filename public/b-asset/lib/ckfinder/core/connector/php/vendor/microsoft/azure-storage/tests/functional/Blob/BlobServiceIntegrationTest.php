@@ -646,7 +646,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::createPageBlob
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::getBlobProperties
      */
-    public function testCreatePageBlobWithOptionsWorks()
+    public function testCreatePageBlothOptionsWorks()
     {
         // Act
         $opts = new CreateBlobOptions();
@@ -1009,7 +1009,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::createBlockBlob
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::getBlobProperties
      */
-    public function testCreateBlockBlobWithOptionsWorks()
+    public function testCreateBlockBlothOptionsWorks()
     {
         // Act
         $content = 'some $content';
@@ -1194,7 +1194,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::createPageBlob
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::getBlob
      */
-    public function testGetBlobWithIfMatchETagAccessConditionWorks()
+    public function testGetBlothIfMatchETagAccessConditionWorks()
     {
         // Act
         $this->restProxy->createPageBlob(self::$_test_container_for_blobs, 'test', 4096);
@@ -1213,7 +1213,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::getBlob
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::getBlobProperties
      */
-    public function testGetBlobWithIfNoneMatchETagAccessConditionWorks()
+    public function testGetBlothIfNoneMatchETagAccessConditionWorks()
     {
         // Act
         $this->restProxy->createPageBlob(self::$_test_container_for_blobs, 'test', 4096);
@@ -1241,7 +1241,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::getBlob
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::getBlobProperties
      */
-    public function testGetBlobWithIfModifiedSinceAccessConditionWorks()
+    public function testGetBlothIfModifiedSinceAccessConditionWorks()
     {
         // Act
         $this->restProxy->createPageBlob(self::$_test_container_for_blobs, 'test', 4096);
@@ -1271,7 +1271,7 @@ class BlobServiceIntegrationTest extends IntegrationTestBase
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::getBlobProperties
      * @covers MicrosoftAzure\Storage\Blob\BlobRestProxy::setBlobMetadata
      */
-    public function testGetBlobWithIfNotModifiedSinceAccessConditionWorks()
+    public function testGetBlothIfNotModifiedSinceAccessConditionWorks()
     {
         // Act
         $container = self::$_test_container_for_blobs;

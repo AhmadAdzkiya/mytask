@@ -4464,9 +4464,9 @@ window.CodeMirror = (function() {
         if (!m) break;
         pos += skipped + 1;
         if (m[0] == "\t") {
-          var tabSize = builder.cm.options.tabSize, tabWidth = tabSize - builder.col % tabSize;
-          content.appendChild(elt("span", spaceStr(tabWidth), "cm-tab"));
-          builder.col += tabWidth;
+          var tabSize = builder.cm.options.tabSize, tadth = tabSize - builder.col % tabSize;
+          content.appendChild(elt("span", spaceStr(tadth), "cm-tab"));
+          builder.col += tadth;
         } else {
           var token = builder.cm.options.specialCharPlaceholder(m[0]);
           content.appendChild(token);
